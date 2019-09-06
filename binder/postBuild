@@ -1,6 +1,5 @@
 #!/bin/bash
-
-git clone https://github.com/wrattler/wrattler.git 
+git clone --single-branch --branch feature/binder https://github.com/wrattler/wrattler.git
 cd ./wrattler/jupyterlab_wrattler/
 jlpm run build
 jupyter labextension install .
