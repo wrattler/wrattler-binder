@@ -1,2 +1,9 @@
 #!/bin/bash
-jupyter labextension install jupyterlab_wrattler
+
+git clone https://github.com/wrattler/wrattler.git 
+cd ./wrattler/jupyterlab_wrattler/
+jlpm run build
+jupyter labextension install .
+cd ../client
+npm install http-server -g
+cd ../..
