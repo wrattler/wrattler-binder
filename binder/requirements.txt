@@ -8,3 +8,10 @@ scikit-learn
 sklearn
 matplotlib
 pycairo
+numpy
+pyarrow
+poetry
+clevercsv
+ipython
+azure
+tempdir
