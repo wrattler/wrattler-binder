@@ -6,3 +6,4 @@ jupyter labextension install .
 cd ../client
 npm install http-server -g
 cd ../..
+pip install .

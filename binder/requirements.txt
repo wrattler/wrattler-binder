@@ -16,3 +16,5 @@ clevercsv
 ipython
 azure
 tempdir
+wrattler-python-service
+wrattler-data-store
