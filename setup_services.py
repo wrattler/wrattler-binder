@@ -10,5 +10,5 @@ def setup_datastore():
 
 def setup_client():
   return {
-    'command': ['http-server','wrattler/client/public']
+    'command': ['http-server','wrattler/client/public','-c-1','--cors=http://localhost:8888']
   }
