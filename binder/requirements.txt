@@ -3,5 +3,6 @@ flask
 flask_restful
 flask_cors
 requests
+numpy
 wrattler-python-service==0.5.3
 wrattler-data-store==0.5.1
