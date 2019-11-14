@@ -3,7 +3,3 @@ git clone --single-branch --branch feature/binder https://github.com/wrattler/wr
 cd ./wrattler/jupyterlab_wrattler/
 jlpm run build
 jupyter labextension install .
-cd ../client
-npm install http-server -g
-cd ../..
-pip install .
