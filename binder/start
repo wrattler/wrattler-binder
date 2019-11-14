@@ -2,4 +2,6 @@
 http-server wrattler/client/public &
 wrattler-data-store &
 wrattler-python-service &
-jupyter lab --ip=0.0.0.0
+echo "HELLO FROM START"
+exec "$@"
+##jupyter lab --ip=0.0.0.0
