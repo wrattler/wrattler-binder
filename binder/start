@@ -1,5 +1,5 @@
 #!/bin/bash
-http-server wrattler/client/public &
+http-server wrattler/client/public -c-1 --cors &
 wrattler-data-store &
 wrattler-python-service &
 echo "HELLO FROM START"
