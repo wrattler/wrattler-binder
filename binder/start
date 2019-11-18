@@ -2,6 +2,8 @@
 http-server wrattler/client/public -c-1 --cors &
 wrattler-data-store &
 wrattler-python-service &
+export R_SERVICE_HOME="~/wrattler/server/R"
+Rscript wrattler/server/R/app.R &
+
 echo "HELLO FROM START"
 exec "$@"
-##jupyter lab --ip=0.0.0.0

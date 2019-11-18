@@ -8,7 +8,14 @@ def setup_datastore():
     'command': ['wrattler-data-store']
   }
 
+
+def setup_rservice():
+  return {
+    'command': ['Rscript','wrattler/server/R/app.R']
+  }
+
+
 def setup_client():
   return {
-    'command': ['http-server','wrattler/client/public','-c-1','--cors=http://localhost:8888']
+    'command': ['http-server','wrattler/client/public','-c-1','--cors']
   }
