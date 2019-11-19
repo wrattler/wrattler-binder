@@ -1,0 +1,14 @@
+dependencies:
+  - matplotlib
+  - jupyter-server-proxy
+  - numpy
+  - pandas
+  - flask
+  - flask-restful
+  - flask-cors
+  - requests
+  - pip
+  - pip:
+      - wrattler-python-service==0.5.3
+      - wrattler-data-store==0.5.1
+  - R
