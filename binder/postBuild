@@ -31,4 +31,4 @@ cd ../..
 pip install .
 
 # link resources directory so that .py or .R resources can be served by the client
-ln -s resources wrattler/client/public/resources
+ln -s `pwd`/resources wrattler/client/public/
