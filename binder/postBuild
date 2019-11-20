@@ -20,8 +20,8 @@ Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/inf
 Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/jug/jug_0.1.7.tar.gz')"
 Rscript -e "install.packages('arrow')"
 
-#
-git clone --single-branch --branch fix-delete https://github.com/wrattler/wrattler.git
+# clone the master branch of wrattler
+git clone https://github.com/wrattler/wrattler.git
 cd ./wrattler/jupyterlab_wrattler/
 jlpm run build
 jupyter labextension install .
