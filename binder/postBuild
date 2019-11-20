@@ -18,16 +18,24 @@ Rscript -e "install.packages('base64enc')"
 # 'jug', our HTTP server, is now archived - install from source
 Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/infuser/infuser_0.2.8.tar.gz')"
 Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/jug/jug_0.1.7.tar.gz')"
-Rscript -e "install.packages('arrow')"
+#Rscript -e "install.packages('arrow')"
 
 # clone the master branch of wrattler
 git clone https://github.com/wrattler/wrattler.git
-cd ./wrattler/jupyterlab_wrattler/
+# build the client (wrattler-app.js)
+cd ./wrattler/client
+yarn; yarn build;
+# copy wrattler-app.js to where it will be served from
+cp build/wrattler-app.js public
+# install the http server
+npm install http-server -g
+
+# build the jupyterlab extension
+cd ../jupyterlab_wrattler/
 jlpm run build
 jupyter labextension install .
-cd ../client
-npm install http-server -g
-cd ../..
+
+# use the local setup.py package to define entrypoints for jupyter server proxy.
 pip install .
 
 # link resources directory so that .py or .R resources can be served by the client
