@@ -9,6 +9,6 @@ dependencies:
   - requests
   - pip
   - pip:
-      - wrattler-python-service==0.5.3
+      - wrattler-python-service==0.6
       - wrattler-data-store==0.5.1
   - R
