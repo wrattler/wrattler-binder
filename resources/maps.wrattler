@@ -4,7 +4,7 @@
 //global loader.js
 loadStyle("https://unpkg.com/leaflet@1.6.0/dist/leaflet.css")
 loadScript("https://unpkg.com/leaflet@1.6.0/dist/leaflet.js")
-loadScript("http://d3js.org/d3.v3.min.js")
+loadScript("https://d3js.org/d3.v3.min.js")
 loadScript("https://code.jquery.com/jquery-3.4.1.min.js")
 ```
 
