@@ -21,7 +21,7 @@ Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/jug
 Rscript -e "install.packages('arrow')"
 
 # clone the master branch of wrattler
-git clone --single-branch --branch bugfix/python-service-binder-files https://github.com/wrattler/wrattler.git
+git clone --single-branch --branch develop https://github.com/wrattler/wrattler.git
 # build the client (wrattler-app.js) - need to install yarn first
 rm -fr $HOME/.yarn
 cd ./wrattler/client
