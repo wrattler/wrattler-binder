@@ -7,8 +7,11 @@ dependencies:
   - flask-restful
   - flask-cors
   - requests
+  - pycairo
+  - pyarrow
   - pip
   - pip:
       - wrattler-python-service==0.6
       - wrattler-data-store==0.5.1
+      - clevercsv
   - R
