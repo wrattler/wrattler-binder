@@ -1,8 +1,8 @@
 # Testing the Broken Window hypothesis: are less scenic neighbourhoods linked to more crime?
-<br /> 
+<br />
 The Broken Window hypothesis proposes that visible signs of crime and civil disorder creates an environment that encourages further crime and disorder.
-The hypothesis has been reponsible for promoting controversial policing policies throughout the 1990s. 
-Perhaps the most notable application of the theory was the adoption of the *stop-and-frisk* practise in New York City. 
+The hypothesis has been reponsible for promoting controversial policing policies throughout the 1990s.
+Perhaps the most notable application of the theory was the adoption of the *stop-and-frisk* practise in New York City.
 Whilst application of such policies have been linked to decline in crime rates, great skeptism surrounds the validity of such a relationship
 because of other changes taking place at that time, including the number of police officers, periods of economic growth and a reduction in poverty.
 
@@ -25,8 +25,8 @@ We use the following data for the analysis:
 ### Crime data<a name="crime">
 
 The first dataset we import is the [MPS LSOA Level Crime (historic)](https://data.london.gov.uk/dataset/recorded_crime_summary) dataset.
-This contains counts of the number of crimes at different Lower Super Output Area (LSOA) geographic locations in London per month, according to crime type. 
-LSOAs are geographic areas with an average population size of 1,600, defined by the Office of National Statistics for statistical analyses, 
+This contains counts of the number of crimes at different Lower Super Output Area (LSOA) geographic locations in London per month, according to crime type.
+LSOAs are geographic areas with an average population size of 1,600, defined by the Office of National Statistics for statistical analyses,
 with areas ranging between 0.018 square km to 684 square km.
 
 
@@ -42,7 +42,7 @@ counts_per_LSOA = pd.read_csv("https://wrattler.blob.core.windows.net/wrattler/c
 
 ### Indices of deprivation & population density data <a name="indices">
 
-To control for various indices of deprivation in the analysis, we load [data](https://data.london.gov.uk/dataset/indices-of-deprivation) indicating such measures provided by the Government (see 'IMDB2015' sheet in .xls). 
+To control for various indices of deprivation in the analysis, we load [data](https://data.london.gov.uk/dataset/indices-of-deprivation) indicating such measures provided by the Government (see 'IMDB2015' sheet in .xls).
 In addition, to control for population density as a factor influencing crime rates, we also load demographic and related data, [Current LSOA boundaries post-2011](https://data.london.gov.uk/dataset/lsoa-atlas).
 
 
@@ -73,7 +73,7 @@ if population_density.isnull().values.any():
 
 ### Scenic ratings<a name="scenic">
 
-Lastly, to obtain a measure of 'scenicness' for each LSOA, we load predictions made by a Neural Network that was trained on [Scenic-Or-Not](http://scenicornot.datasciencelab.co.uk/) data on Google Street View images. 
+Lastly, to obtain a measure of 'scenicness' for each LSOA, we load predictions made by a Neural Network that was trained on [Scenic-Or-Not](http://scenicornot.datasciencelab.co.uk/) data on Google Street View images.
 The method has been discussed by [Law et al. (2018)](https://www.tandfonline.com/doi/abs/10.1080/13658816.2018.1555832).
 
 ```python
@@ -88,10 +88,10 @@ if predictions.isnull().values.any():
 ```
 ```python
 # join the datasets
-df = pd.concat([depriv_indices.set_index(JOINING_KEY), 
-                population_density.set_index(JOINING_KEY), 
+df = pd.concat([depriv_indices.set_index(JOINING_KEY),
+                population_density.set_index(JOINING_KEY),
                 predictions.set_index(JOINING_KEY)], axis=1, sort=True)
-                
+
 df = df.join(counts_per_LSOA.set_index(JOINING_KEY)).dropna().reset_index().rename(columns={"index":JOINING_KEY})
 
 # first analysis crime counts irrespective of crime type
@@ -99,11 +99,11 @@ crime_subset_df = df[df["crime_category"] == "total_count"]
 ```
 # Visualisations<a name="visualisation">
 
-Having loaded the data, we're first going to build a javascript visualisation using [d3](https://d3js.org/) and [leaflet](https://leafletjs.com/) 
+Having loaded the data, we're first going to build a javascript visualisation using [d3](https://d3js.org/) and [leaflet](https://leafletjs.com/)
 to qualitatively see whether there might be a relationship between crime counts and scenicness, as well as inspect the measures of deprivation
 across different LSOA codes.
 
-To do this, we also load data containing coordinates of LSOA boundaries so we can visually separate them on the leaflet map, as well as data containing 
+To do this, we also load data containing coordinates of LSOA boundaries so we can visually separate them on the leaflet map, as well as data containing
 ratings of scenicness for specific points in the map (as opposed to an average rating for an entire LSOA).
 ```javascript
 //global loader.js
@@ -112,7 +112,7 @@ ratings of scenicness for specific points in the map (as opposed to an average r
 loadStyle("https://fonts.googleapis.com/css?family=Lora:400,700italic")
 loadStyle("https://unpkg.com/leaflet@0.7.2/dist/leaflet.css")
 loadScript("https://unpkg.com/leaflet@0.7.2/dist/leaflet.js")
-loadScript("http://d3js.org/d3.v3.min.js")
+loadScript("https://d3js.org/d3.v3.min.js")
 loadScript("https://code.jquery.com/jquery-3.4.1.min.js")
 ```
 ```javascript
@@ -519,89 +519,88 @@ install.packages("reshape2")
 library(reshape2)
 library(ggplot2)
 
-long_data <- melt(crime_subset_df, id.vars = c("lsoa_code", "crime_count", "std_monthly_crime_count", "lsoa_name_2011", 
+long_data <- melt(crime_subset_df, id.vars = c("lsoa_code", "crime_count", "std_monthly_crime_count", "lsoa_name_2011",
                                                 "n_months", "mean_monthly_crime_count", "crime_category"))
 
-scenic_plot <- ggplot(data = subset(long_data, variable=="scenic_rating"), aes(x=mean_monthly_crime_count, y=value)) + 
+scenic_plot <- ggplot(data = subset(long_data, variable=="scenic_rating"), aes(x=mean_monthly_crime_count, y=value)) +
                       geom_point(size=0.8) + xlim(0, 50) + ylab("scenic rating") + xlab("mean monthly crime count")
 
-pop_plot <- ggplot(data = subset(long_data, variable=="population_density_area_hectares"), aes(x=mean_monthly_crime_count, y=value)) + 
+pop_plot <- ggplot(data = subset(long_data, variable=="population_density_area_hectares"), aes(x=mean_monthly_crime_count, y=value)) +
                    geom_point(size=0.8) + xlim(0, 50) + ylab("population density") + xlab("mean monthly crime count")
 
-living_e_plot <- ggplot(data = subset(long_data, variable=="living_environment_score"), aes(x=mean_monthly_crime_count, y=value)) + 
+living_e_plot <- ggplot(data = subset(long_data, variable=="living_environment_score"), aes(x=mean_monthly_crime_count, y=value)) +
                         geom_point(size=0.8) + xlim(0, 50) + ylab("living environment score") + xlab("mean monthly crime count")
 
-housing_plot <- ggplot(data = subset(long_data, variable=="barriers_to_housing_and_services_score"), aes(x=mean_monthly_crime_count, y=value)) + 
+housing_plot <- ggplot(data = subset(long_data, variable=="barriers_to_housing_and_services_score"), aes(x=mean_monthly_crime_count, y=value)) +
                        geom_point(size=0.8) + xlim(0, 50) + ylab("barriers to housing and services score") + xlab("mean monthly crime count")
 ```
 
 # Quantitative Analysis<a name="models">
 
 We now look to better quantify the relationship between the crime counts and the scenicness of the area.
-Count based data contains events that occur at a certain rate, and this rate may change over time. 
+Count based data contains events that occur at a certain rate, and this rate may change over time.
 As we've seen in the plots above, it tends to have the following characteristics:
 * consists of *non negative integers*
 * *skewed distribution* - may contain a large number of data points for just a few values
 * *sparsity* - may reflect the occurrence of a rare event
-* *rate of occurrence* - assumption that there is a certain rate of occurrences of events that drives the 
+* *rate of occurrence* - assumption that there is a certain rate of occurrences of events that drives the
 generation of such data and this may drift overtime.
 
 We can investigate a couple of approaches for analysing this kind of data.
 
 ### Poisson regression model
 
-The [Poisson distribution](https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459) 
-models the probability of event(s) occurring within a specific timeframe, 
-assuming that occurrences are not affected by the timing of previous events. 
-Since Possion distributed data is intrinsically integer-valued, 
+The [Poisson distribution](https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459)
+models the probability of event(s) occurring within a specific timeframe,
+assuming that occurrences are not affected by the timing of previous events.
+Since Possion distributed data is intrinsically integer-valued,
 [Poisson regression models](https://www.dataquest.io/blog/tutorial-poisson-regression-in-r/) - which assume event counts to be Poisson distributed - are commonly used to model count data.
 
-If the event rate can change from one observation to the next, 
+If the event rate can change from one observation to the next,
 we assume that the rate is influenced by explanatory or predictor variables.
-The Poisson regression model fits the observed counts to the explanatory variables matrix via a *link-function*, 
+The Poisson regression model fits the observed counts to the explanatory variables matrix via a *link-function*,
 which expresses the rate vector as a function of regression coefficients and the explanatory variables matrix.
-It uses the exponential-link (or [log-link](https://www.theanalysisfactor.com/count-models-understanding-the-log-link-function/)) function, 
+It uses the exponential-link (or [log-link](https://www.theanalysisfactor.com/count-models-understanding-the-log-link-function/)) function,
 which keeps the predicted values non negative when the explanatory variables or regression coefficients have negative values.
 
 ### Overdispersion
 
-The mean and variance of the Poisson distribution are assumed to be the same, and equal to the event rate (see [proof](https://llc.stat.purdue.edu/2014/41600/notes/prob1804.pdf)). 
-However, in practise, this is often violated by real world data and the 
+The mean and variance of the Poisson distribution are assumed to be the same, and equal to the event rate (see [proof](https://llc.stat.purdue.edu/2014/41600/notes/prob1804.pdf)).
+However, in practise, this is often violated by real world data and the
 observed variance is usually larger than its mean - this is referred to as [*overdispersion*](https://data.princeton.edu/wws509/r/overdispersion).
 Performing Poisson regression on count data that exhibits this will result in a model that doesn’t fit well.
 
 ### Negative Binomial regression model
 
-The [negative binomial regression model](https://data.library.virginia.edu/getting-started-with-negative-binomial-regression-modeling/) 
-does not make this *mean == variance* assumption about the data. 
+The [negative binomial regression model](https://data.library.virginia.edu/getting-started-with-negative-binomial-regression-modeling/)
+does not make this *mean == variance* assumption about the data.
 The variance of a negative binomial distribution is a function of its mean and has an additional parameter to model the over-dispersion,
 and so is a good alternative model to Poisson regression model should the data be overdispersed.
 ```r
-install.packages("AER")
 library(AER)
 
 # Add population density data & deprivation scores
-print(summary(m1 <- glm(crime_count ~ scenic_rating + 
-                                      income_score_rate + 
-                                      employment_score_rate + 
-                                      education_skills_and_training_score + 
-                                      health_deprivation_and_disability_score + 
+print(summary(m1 <- glm(crime_count ~ scenic_rating +
+                                      income_score_rate +
+                                      employment_score_rate +
+                                      education_skills_and_training_score +
+                                      health_deprivation_and_disability_score +
                                       barriers_to_housing_and_services_score +
-                                      living_environment_score + 
-                                      population_density_area_hectares, 
+                                      living_environment_score +
+                                      population_density_area_hectares,
                         family="poisson",
                         data=crime_subset_df)))
 print(dispersiontest(m1))
 
 # Run Poisson model without scenic rating
-print(summary(m2 <- glm(crime_count ~ income_score_rate + 
-                                      employment_score_rate + 
-                                      education_skills_and_training_score + 
-                                      health_deprivation_and_disability_score + 
+print(summary(m2 <- glm(crime_count ~ income_score_rate +
+                                      employment_score_rate +
+                                      education_skills_and_training_score +
+                                      health_deprivation_and_disability_score +
                                       barriers_to_housing_and_services_score +
-                                      living_environment_score + 
-                                      population_density_area_hectares, 
-                        family="poisson", 
+                                      living_environment_score +
+                                      population_density_area_hectares,
+                        family="poisson",
                         data=crime_subset_df)))
 print(dispersiontest(m2))
 ```
@@ -637,7 +636,7 @@ print(summary(mnb3 <- glm.nb(crime_count ~ income_score_rate +
                                            health_deprivation_and_disability_score +
                                            barriers_to_housing_and_services_score +
                                            living_environment_score +
-                                           population_density_area_hectares, 
+                                           population_density_area_hectares,
                              data=crime_subset_df)))
 
 # drop in deviance test https://bookdown.org/roback/bookdown-bysh/ch-poissonreg.html
@@ -662,7 +661,7 @@ By comparing `mnb1` and `mnb2`, we also note that there is evidence to suggest t
 However, we want to try and better clarify the importance of scenic rating as a predictor variable.
 
 By giving a measure of how well the model fits the data and avoids overfitting, Akaike Information Criterion (AIC) is a common index used to compare models.
- 
+
 - Indicating a better fit to the data, the model with scenic rating information included `mnb2`, has a lower AIC score than the model without scenic rating information, `mnb3`.
  This gives an initial indication that including the scenic rating does provide valuable information to the model.
 
@@ -672,7 +671,7 @@ Above we also identified variables whose p-values dropped by at least 10-fold to
 - For both models, we immediately see that neither `income_score_rate` nor `employment_score_rate` exert a statistically significant influence on the number of crime occurences in either model.
  This combination of variables may not be surprising as one can imagine that income and employment scores may be related.
 
-- The variables `health_deprivation_and_disability_score`, `barriers_to_housing_and_services_score` and `population_density_area_hectares` gained more significance in the reduced model, 
+- The variables `health_deprivation_and_disability_score`, `barriers_to_housing_and_services_score` and `population_density_area_hectares` gained more significance in the reduced model,
  their coefficients suggesting that higher scores of such indices and population density are linked to higher crime rates.
 
 - The variable `education_skills_and_training_score` also gains more significance in the reduced model. However, its coefficient suggests that its direction of influence changes: in the model
@@ -680,12 +679,12 @@ Above we also identified variables whose p-values dropped by at least 10-fold to
 
 # To explore further<a name="future">
 
-So far the analysis supports the influence of scenic rating on crime rates in LSOAs across London. 
+So far the analysis supports the influence of scenic rating on crime rates in LSOAs across London.
 However, the analysis is still a work in progress and still needs to further explore the relationship with respect to the other indices of deprivation in particular.
 
- - The changes in regression coefficients of the variable `education_skills_and_training_score` 
+ - The changes in regression coefficients of the variable `education_skills_and_training_score`
  suggesting the reverse relationship, is potentially suprising and requires more investigation - [Simpson's Paradox?](https://towardsdatascience.com/solving-simpsons-paradox-e85433c68d03)
  - Can we identify explanations for why those other three variables change significance when scenic rating is removed.
- - Following those above to points, **collinearity**: one of the main challenges of this analysis is the probable interrelation/correlation of many of the predictor variables, 
+ - Following those above to points, **collinearity**: one of the main challenges of this analysis is the probable interrelation/correlation of many of the predictor variables,
  which makes it more difficult to extract individual effects of each variable - we have not yet performed directs test of collinearity.
  - Investigate **individual types of crime**: we currently have crime data relating to major and minor crime types; the analysis so far has only looked at crime rate irrespective of the type.
