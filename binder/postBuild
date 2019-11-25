@@ -23,6 +23,7 @@ Rscript -e "install.packages('AER')"
 Rscript -e "install.packages('mltools')"
 Rscript -e "install.packages('reshape2')"
 Rscript -e "install.packages('car')"
+Rscript -e "install.packages('dplyr')"
 
 
 # clone the master branch of wrattler
