@@ -1,0 +1,13 @@
+## Welcome to Wrattler
+
+### New in Wrattler
+
+* *Jupyterlab integration*:
+Jupyterlab enables us to load and save notebooks.  Opening any file with a ```.wrattler``` extension in the Jupyterlab interface will use Wrattler as the renderer.
+
+* *Loading function definitions from files*
+Also thanks to Jupyterlab, we can use `%global` or `%local` magics to read function or variable definitions from python or R files stored in the ```resources/``` directory.
+This is demonstrated in the `testfunc.wrattler` notebook.
+
+* *Binderhub*
+It is now possible to deploy Wrattler on the cloud via Binderhub.
