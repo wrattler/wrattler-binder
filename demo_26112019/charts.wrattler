@@ -8,9 +8,10 @@ This notebook shows some of the options.
 
 ### Matplotlib using Python
 
-The following example creates a simple matplotlib plot in in Python.  
+The following example creates a simple matplotlib plot in in Python.
 Note that we need to use the convention demonstrated here for importing pyplot as `plt`
 and numpy as `np`. The following draws a sine wave:
+
 
 
 
@@ -32,11 +33,13 @@ draw()
 
 
 
+
 ### ggplot2 using R
 
 Next, we create a ggplot2 in R. Note that we need to assign the plot to a variable
 so that Wrattler can detect it and display it. Here, we look at sample R dataset
 about irises:
+
 
 
 
@@ -52,6 +55,7 @@ p <-
 
 
 
+
 ### Plotly using JavaScript
 
 Finally, if you are using JavaScript, you can import a wide range of data visualization
@@ -61,9 +65,11 @@ Loading data in JavaScript is difficult, so we do that part using Python:
 
 
 
+
 ```python
 aapl = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
 ```
+
 
 
 
@@ -71,6 +77,7 @@ Now, we can create a visualizaiton using Plotly. To do this, we first need to lo
 library. Wrattler does not automatically includes libraries such as this one, but makes
 it very easy to load them using the `loadScript` function from `loader.js`. Note that you 
 need to evaluate the following cell explicitly.
+
 
 
 ```javascript
