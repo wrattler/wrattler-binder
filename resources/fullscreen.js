@@ -24,8 +24,8 @@ function makeFullScreen(options, f) {
   let style = options.height ? "height:" + options.height + "px" : ""
   addOutput(function (id) {
     document.getElementById(id).innerHTML = 
-      `<a id='${ id }-link' href='javascript:;' style='color:#c0c0c0; 
-        text-decoration:none; font:bold 10pt Roboto; float:right'>full screen</a>
+      `<div style="text-align:right"><a id='${ id }-link' href='javascript:;' style='color:#c0c0c0; 
+        text-decoration:none; font:bold 10pt Roboto'>full screen</a></div>
         <div id='${ id }-small' style='${ style }'></div>`
     document.getElementById(id + "-link").onclick = function () {
       createDialog(key, title, f);

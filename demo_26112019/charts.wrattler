@@ -13,6 +13,7 @@ Note that we need to use the convention demonstrated here for importing pyplot a
 and numpy as `np`. The following draws a sine wave:
 
 
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np  
@@ -30,11 +31,13 @@ draw()
 ```
 
 
+
 ### ggplot2 using R
 
 Next, we create a ggplot2 in R. Note that we need to assign the plot to a variable
 so that Wrattler can detect it and display it. Here, we look at sample R dataset
 about irises:
+
 
 
 ```r
@@ -48,6 +51,7 @@ p <-
 ```
 
 
+
 ### Plotly using JavaScript
 
 Finally, if you are using JavaScript, you can import a wide range of data visualization
@@ -56,19 +60,25 @@ demo adapts a financial chart example from the [Plotly documentation](https://pl
 Loading data in JavaScript is difficult, so we do that part using Python:
 
 
+
 ```python
 aapl = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
 ```
 
 
-Now, we can create a visualizaiton using Plotly. To do this, you need to call `addOutput`, which
-takes a function and calls the function after Wrattler creates an element on the page that you
-can use to render the content:
+
+Now, we can create a visualizaiton using Plotly. To do this, we first need to load the Poltly
+library. Wrattler does not automatically includes libraries such as this one, but makes
+it very easy to load them using the `loadScript` function from `loader.js`. Note that you 
+need to evaluate the following cell explicitly.
 
 
 ```javascript
 //global loader.js
 loadScript("https://cdn.plot.ly/plotly-latest.min.js")
+```
+```javascript
+
 ```
 ```javascript
 addOutput(function(myDiv) {
