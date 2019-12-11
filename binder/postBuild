@@ -30,14 +30,15 @@ Rscript -e "install.packages('dplyr')"
 git clone --single-branch --branch master https://github.com/wrattler/wrattler.git
 #git clone --single-branch --branch develop https://github.com/wrattler/wrattler.git
 # build the client (wrattler-app.js) - need to install yarn first
-#rm -fr $HOME/.yarn
+rm -fr $HOME/.yarn
 cd ./wrattler/client
-#curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import
-#curl -o- -L https://yarnpkg.com/install.sh | bash
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-#yarn; yarn build;
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --import
+curl -o- -L https://yarnpkg.com/install.sh | bash
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+npm install webpack
+yarn; yarn build;
 # copy wrattler-app.js to where it will be served from
-#cp build/wrattler-app.js public
+cp build/wrattler-app.js public
 
 # install the http server
 npm install http-server -g
